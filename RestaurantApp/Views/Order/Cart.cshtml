@@ -1,0 +1,141 @@
+﻿@model OrderViewModel
+<h1 class="text-center mb-4">My Cart</h1>
+
+<!-- Form to finalize and create the order -->
+<form asp-action="PlaceOrder" method="post">
+    <h3 class="mb-4" style="text-align: left;">Order Items</h3> <!-- Order Items aligned left -->
+    <!-- Simple Table -->
+    <table class="table table-bordered">
+        <thead class="thead-light">
+            <tr>
+                <th class="fw-semibold">Product</th>
+                <th class="fw-semibold">Quantity</th>
+                <th class="fw-semibold">Price</th>
+                <th class="fw-semibold">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.OrderItems.Count; i++)
+            {
+                var item = Model.OrderItems[i];
+                var itemTotal = item.Quantity * item.Price;
+                <!-- Calculate the total for this item -->
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>@itemTotal.ToString("C")</td> <!-- Show the item total -->
+                </tr>
+            }
+
+            <!-- Add the overall total at the end -->
+            <tr>
+                <td colspan="3" class="text-right"><strong>Total Amount</strong></td>
+                <td class="fw-bold bg-deep-green text-white p-2">@Model.TotalAmount.ToString("C")</td> <!-- Total Amount box with deep green background -->
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Submit Button for Placing the Order -->
+    <div class="form-group text-center mt-4">
+        <input type="submit" value="Place Order" class="btn btn-deep-green btn-lg shadow-lg" />
+    </div>
+</form>
+
+<!-- Styling for Simple Table and New Elements -->
+<style>
+    /* General Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6; /* Subtle border for rows and outer table */
+    }
+
+    th {
+        background-color: #f8f9fa; /* Light gray background for header */
+        color: #333;
+        font-weight: 600; /* Semi-bold header */
+        text-align: center;
+    }
+
+    td {
+        font-size: 1.1rem;
+        color: #333;
+        text-align: center;
+    }
+
+        td:last-child {
+            font-weight: 600;
+            color: #218838; /* Deep green color for prices */
+        }
+
+    /* Custom Deep Green for Button and Total Amount */
+    .btn-deep-green {
+        background-color: #218838; /* Deep green */
+        border: none;
+        color: white;
+        padding: 15px 35px;
+        border-radius: 25px;
+        font-weight: bold;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-deep-green:hover {
+            background-color: #1e7e34;
+            transform: translateY(-4px);
+        }
+
+    /* Deep Green Background for Total Amount */
+    .bg-deep-green {
+        background-color: #218838 !important; /* Deep green background */
+        color: white;
+        font-weight: bold;
+    }
+
+    .fw-semibold {
+        font-weight: 600 !important;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .fw-bold {
+        font-weight: 700;
+    }
+
+    /* Optional: Borderless rows */
+    tr:hover {
+        background-color: #f1f1f1; /* Subtle hover effect on rows */
+    }
+
+    /* Title styling */
+    h1 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .mt-4 {
+        margin-top: 2rem;
+    }
+
+    /* Centered text styling */
+    .text-center {
+        text-align: center;
+    }
+
+    .p-2 {
+        padding: 10px !important;
+    }
+</style>

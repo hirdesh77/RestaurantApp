@@ -1,0 +1,73 @@
+﻿@model Ingredient
+@{
+    ViewBag.Title = "Ingredient Details";
+}
+<h1 class="text-center text-primary mb-4">@Model.Name Details</h1>
+
+@if (Model.ProductIngredients != null && Model.ProductIngredients.Any())
+{
+    <h4 class="text-center text-secondary mb-3">Products Using This Ingredient</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var productIngredient in Model.ProductIngredients)
+            {
+                <tr>
+                    <td>@productIngredient.Product.Name</td>
+                    <td>@productIngredient.Product.Description</td>
+                    <td>@productIngredient.Product.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+<div class="text-center mt-4">
+    <a asp-action="Index" class="btn btn-info btn-sm rounded">Back to List</a>
+</div>
+
+<!-- Add some CSS for styling -->
+<style>
+    h1 {
+        font-weight: 600;
+        color: #0056b3; /* Dark Blue */
+    }
+
+    h4 {
+        font-weight: 500;
+        color: #6c757d; /* Gray for secondary text */
+    }
+
+    .table {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+        .table th, .table td {
+            text-align: center;
+        }
+
+    .table-bordered {
+        border: 1px solid #ddd;
+    }
+
+    .thead-light th {
+        background-color: #f8f9fa;
+        color: #495057;
+    }
+
+    .btn-info {
+        color: white;
+        background-color: #17a2b8;
+        border-radius: 25px;
+    }
+
+        .btn-info:hover {
+            background-color: #138496;
+        }
+</style>

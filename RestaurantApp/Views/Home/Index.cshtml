@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section -->
+<div class="hero-section text-white text-center" style="background: url('https://aladdinshouston.com/wp-content/uploads/2019/01/Mediterranean-restaurant.jpg.webp') no-repeat center center; background-size: cover; padding: 100px 0; position: relative;">
+    <!-- Overlay for better text visibility -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 0;"></div>
+
+    <div class="container" style="position: relative; z-index: 1;">
+        <h1 class="display-4">Welcome to Our Restaurant</h1>
+        <p class="lead">Serving delicious food with a click! Discover our menu and place an order.</p>
+        <a href="#about" class="btn btn-primary btn-lg">Learn More</a>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="bg-light py-5">
+    <div class="container text-center">
+        <h2>Features</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Fresh Ingredients</h3>
+                <p>We only use the freshest, locally sourced ingredients to create mouth-watering dishes for you.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Fast Delivery</h3>
+                <p>Order online and get your favorite meals delivered to your door in no time. Enjoy our fast and reliable service.</p>
+            </div>
+            <div class="col-md-4">
+                <h3>Customizable Menu</h3>
+                <p>Choose your favorite dishes, or customize them to fit your preferences. We offer flexibility for all tastes.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add custom CSS for better styling -->
+<style>
+    .hero-section {
+        background-position: center;
+        background-size: cover;
+        height: 500px;
+    }
+
+    .btn-lg {
+        padding: 12px 40px;
+        font-size: 18px;
+    }
+
+    .text-white {
+        color: #fff;
+    }
+
+    .bg-light {
+        background-color: #f8f9fa;
+    }
+
+    .bg-dark {
+        background-color: #343a40;
+    }
+
+    footer a {
+        text-decoration: none;
+    }
+
+    footer i {
+        font-size: 20px;
+    }
+
+    footer .container p {
+        margin-bottom: 10px;
+    }
+
+    footer a:hover {
+        color: #ddd;
+    }
+
+    footer .mx-2 {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+</style>

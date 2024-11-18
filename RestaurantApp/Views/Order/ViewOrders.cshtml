@@ -1,0 +1,121 @@
+﻿@model IEnumerable<RestaurantApp.Models.Order>
+
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+<h1 class="text-center mb-4">My Orders</h1>
+
+<!-- Table displaying orders -->
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Order ID</th>
+            <th>Order Date</th>
+            <th>Total Amount</th>
+            <th>Order Items</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
+                <td>@order.TotalAmount.ToString("C")</td>
+                <td>
+                    <ul class="order-items-list">
+                        @foreach (var item in order.OrderItems)
+                        {
+                            <li>@item.Product.Name - @item.Quantity x @item.Price.ToString("C")</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <form asp-action="DeleteOrder" method="post">
+                        <input type="hidden" name="orderId" value="@order.OrderId" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Styling for the table and page -->
+<style>
+    /* General Table Styling */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+    }
+
+    th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #dee2e6;
+    }
+
+    th {
+        background-color: #f8f9fa; /* Light gray background for header */
+        color: #333;
+        font-weight: 600; /* Semi-bold header */
+        text-align: center;
+    }
+
+    td {
+        font-size: 1.1rem;
+        color: #333;
+        text-align: left;
+    }
+
+        td:last-child {
+            text-align: center;
+        }
+
+    .order-items-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        .order-items-list li {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            transform: translateY(-2px);
+        }
+
+    h1 {
+        font-weight: 700;
+        color: #333;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Styling for the actions button */
+    .btn {
+        cursor: pointer;
+    }
+
+    /* Optional: Borderless rows */
+    tr:hover {
+        background-color: #f1f1f1; /* Subtle hover effect on rows */
+    }
+</style>

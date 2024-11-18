@@ -1,0 +1,86 @@
+﻿@model IEnumerable<Ingredient>
+
+@{
+    ViewBag.Title = "List of Restaurant Ingredients";
+}
+
+<h1 class="text-center mb-4">Ingredients</h1>
+
+<!-- Create New Ingredient Button -->
+<div class="text-center mb-4">
+    <a asp-action="Create" class="btn btn-primary btn-sm">Create New Ingredient</a>
+</div>
+
+<table class="table table-striped" style="width: 80%; margin-left: auto; margin-right: auto; border: 1px solid #dee2e6;">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ingredient in Model)
+        {
+            <tr>
+                <td>@ingredient.Name</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@ingredient.IngredientId" class="btn btn-success btn-sm">Details</a>
+                    <a asp-action="Edit" asp-route-id="@ingredient.IngredientId" class="btn btn-warning btn-sm ml-2">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@ingredient.IngredientId" class="btn btn-danger btn-sm ml-2">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Add custom CSS for better styling -->
+<style>
+    .table {
+        margin-top: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+            border: 1px solid #dee2e6; /* Add border for table cells */
+        }
+
+    .btn {
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+    .btn-danger:hover {
+        background-color: #c82333; /* Darker red for hover */
+    }
+
+    .btn-info:hover {
+        background-color: #17a2b8; /* Darker blue for hover */
+    }
+
+    .btn-warning:hover {
+        background-color: #ffcc00; /* Darker yellow for hover */
+    }
+
+    .btn-success:hover {
+        background-color: #28a745; /* Darker green for hover */
+    }
+
+    .thead-dark th {
+        background-color: #1f618d;
+        color: white;
+    }
+
+    .ml-2 {
+        margin-left: 10px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+</style>
